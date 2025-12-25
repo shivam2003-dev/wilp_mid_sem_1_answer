@@ -6,6 +6,8 @@
 
 machine-learning
 ml-practice
+math-ml
+dnn
 ```
 
 Welcome! This site hosts detailed, step-by-step solutions with intuition for the December 2025 mid-semester exams. Built with MyST + Sphinx and deployed via GitHub Pages.
