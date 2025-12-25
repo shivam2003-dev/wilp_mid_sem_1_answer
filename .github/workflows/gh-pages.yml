@@ -33,14 +33,14 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Build docs
+      - name: Build Jupyter Book
         run: |
-          sphinx-build -b html docs _site
+          jupyter-book build docs --path-output _site
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: _site
+          path: _site/html
 
   deploy:
     needs: build
