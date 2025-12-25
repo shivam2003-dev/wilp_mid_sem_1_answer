@@ -1,13 +1,9 @@
 # WILP Mid-Sem Answers
 
-```{toctree}
-:maxdepth: 2
-:caption: Contents
+Welcome! This site hosts detailed, step-by-step solutions with intuition for the December 2025 mid-semester exams. Built with Jupyter Book (MyST) and deployed via GitHub Pages.
 
-machine-learning
-ml-practice
-math-ml
-dnn
-```
-
-Welcome! This site hosts detailed, step-by-step solutions with intuition for the December 2025 mid-semester exams. Built with MyST + Sphinx and deployed via GitHub Pages.
+## Subjects
+- [Machine Learning](machine-learning.md)
+- [Practice & References – Machine Learning](ml-practice.md)
+- [Mathematics for Machine Learning](math-ml.md)
+- [Deep Neural Networks & ML Fundamentals](dnn.md)
