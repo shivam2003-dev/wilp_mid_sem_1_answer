@@ -1,0 +1,6 @@
+format: jb-book
+root: intro
+chapters:
+  - file: wilp_midsem_answers
+  - file: dnn_answers
+  - file: mfml_answers

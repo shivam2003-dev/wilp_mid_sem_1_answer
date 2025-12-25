@@ -1,2 +1,5 @@
-jupyter-book==1.0.0
-furo==2024.8.6
+jupyter-book>=1.0.0
+sphinx-external-toc>=1.0.1
+
+# Used in a few embedded code snippets
+numpy

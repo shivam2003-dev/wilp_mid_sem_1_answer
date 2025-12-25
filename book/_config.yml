@@ -1,0 +1,24 @@
+title: WILP Mid-Sem 1 Answers
+author: Shivam Kumar
+
+repository:
+  url: https://github.com/shivam2003-dev/wilp_mid_sem_1_answer
+  path_to_book: book
+  branch: main
+
+html:
+  use_repository_button: true
+  use_edit_page_button: true
+  baseurl: https://shivam2003-dev.github.io/wilp_mid_sem_1_answer/
+
+parse:
+  myst_enable_extensions:
+    - amsmath
+    - dollarmath
+    - colon_fence
+    - deflist
+    - linkify
+
+sphinx:
+  config:
+    myst_heading_anchors: 3

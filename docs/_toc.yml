@@ -1,7 +1,0 @@
-format: jb-book
-root: index
-chapters:
-  - file: machine-learning
-  - file: ml-practice
-  - file: math-ml
-  - file: dnn
