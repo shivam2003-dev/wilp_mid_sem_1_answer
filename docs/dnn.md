@@ -1,13 +1,13 @@
 # Deep Neural Networks & ML Fundamentals – Detailed Answers
 
-> The paper leaves some parameter values blank (certain weights/logits). Where numbers are missing, I give the full formulas so you can plug in the provided values directly.
+> Some items in the paper omitted concrete numbers (weights/logits/matrices). Below are the explicit formulas and steps; plug in your given numbers to get final values.
 
 ## Q1. Perceptron & Spam Classification
 
 ### (a) Single update
-- Weighted sum: \(z = w_0\cdot 1 + w_1 x_1 + w_2 x_2\). With the stated example \(x_1=1, x_2=2\), \(z = w_0 + w_1 + 2w_2\).
+- Weighted sum: \(z = w_0\cdot 1 + w_1 x_1 + w_2 x_2\). For the sample \(x_1=1, x_2=2\), \(z = w_0 + w_1 + 2w_2\).
 - Step output: \(\hat{y} = \mathbf{1}[z \ge 0]\).
-- If misclassified (\(\hat{y} \ne y\)), update: \(w_j \leftarrow w_j + \eta (y-\hat{y}) x_j\) for \(j=0,1,2\) using \(x_0=1\).
+- If misclassified: \(w_j \leftarrow w_j + \eta (y-\hat{y}) x_j\) with \(x_0=1\).
 
 ### (b) Spam feature weight reading
 - Largest |weight| after the bias indicates strongest influence. With \(w=[0.2, 0.8, 0.9, -0.5]^T\), the “links” feature (0.9) is most indicative of spam; the negative weight on length implies longer emails decrease spam likelihood.
@@ -69,7 +69,10 @@ Given \(w_0=0, w_1=0.6, w_2=0.8, x=(1, 0.7, 0.5), y=1\):
 ## Q4. Softmax & Confusion Matrix
 
 ### (a) Softmax example
-For logits \(\ell = (\ell_0, \ell_1, \ell_2)\), softmax \(p_i = e^{\ell_i}/\sum_j e^{\ell_j}\). CCE loss for true class 1: \(-\log p_1\). Predicted class = argmax of logits (or probabilities). Correctness: check if argmax is 1.
+For logits \(\ell = (\ell_0, \ell_1, \ell_2)\):
+- Softmax: \(p_i = \frac{e^{\ell_i}}{e^{\ell_0}+e^{\ell_1}+e^{\ell_2}}\). Example: \(p_0 = e^{\ell_0}/S\) with \(S=\sum e^{\ell_j}\).
+- CCE for true class 1: \(-\log p_1\).
+- Predicted class: argmax(\(\ell_i\)) (same as argmax(\(p_i\))). Correct if predicted index = 1.
 
 ### (b) Code blanks (softmax training)
 - Blank 1: `exp_Z / np.sum(exp_Z, axis=1, keepdims=True)`
@@ -87,11 +90,11 @@ For logits \(\ell = (\ell_0, \ell_1, \ell_2)\), softmax \(p_i = e^{\ell_i}/\sum_
 ## Q5. 2-layer DFNN
 
 ### (a) Forward pass (symbolic)
-Given X in \(\mathbb{R}^{1\times2}\), parameters (W1\(\in\mathbb{R}^{2\times2}\), b1\(\in\mathbb{R}^{1\times2}\), W2\(\in\mathbb{R}^{2\times1}\), b2\(\in\mathbb{R}\)):
-1. \(Z_1 = X W_1 + b_1\).
-2. \(A_1 = \text{ReLU}(Z_1)\).
-3. \(Z_2 = A_1 W_2 + b_2\).
-4. \(\hat{y} = \sigma(Z_2)\); BCE loss for label 1: \(-\log \hat{y}\).
+Let X be row vector [x1, x2], W1 ∈ R^{2×2}, b1 ∈ R^{2}, W2 ∈ R^{2×1}, b2 scalar.
+1) \(Z_1 = X W_1 + b_1\).
+2) \(A_1 = \max(0, Z_1)\) (ReLU elementwise).
+3) \(Z_2 = A_1 W_2 + b_2\).
+4) \(\hat{y} = \sigma(Z_2) = 1/(1+e^{-Z_2})\). For label y=1, loss = \(-\log \hat{y}\); for y=0, loss = \(-\log(1-\hat{y})\).
 
 ### (b) Code blanks (DFNN)
 - Blank 1: `np.maximum(0, Z)`

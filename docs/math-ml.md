@@ -1,39 +1,33 @@
 # Mathematics for Machine Learning – Detailed Answers
 
-> Note: The original paper omits explicit numeric entries for matrices/vectors. Below, I lay out the full solution methods with symbolic variables; you can drop in the actual numbers and evaluate directly.
+> Numeric matrices/vectors were not provided in the paper. Below are complete solution workflows and symbolic formulas; plug your given numbers directly to get the final numeric results.
 
 ## Q1. Solving linear systems and echelon form
 
 **(a) Solve AX = b via echelon form**
-1. Form the augmented matrix [A\,|\,b].
-2. Apply Gaussian elimination: pivot on leading nonzero in each row, eliminate below; scale pivots to 1 if desired.
-3. Back-substitute to get X. If any row becomes [0 … 0 | c] with c ≠ 0, the system is inconsistent; otherwise solution exists (unique if A is full-rank; infinitely many if rank-deficient but consistent).
+1) Build [A | b]. 2) Pivot-eliminate downward to row echelon (all zeros below pivots). 3) If a row is [0 … 0 | c], c ≠ 0 → no solution. Otherwise back-substitute to get X. Unique solution if rank(A)=n; infinite solutions if rank(A)<n but consistent.
 
 **(b) Echelon form, det(B), rank(B)**
-1. Row-reduce B to row-echelon (upper-triangular-like). The nonzero row count = rank(B).
-2. Determinant: for a square matrix, det(B) = (product of pivots) × (−1)^{#row-swaps} ÷ (product of any row-scale factors you applied). If B is upper-triangular after elimination with only row-additions and swaps (no scaling), det(B) is just the product of diagonal entries up to sign from swaps.
+1) Row-reduce B to echelon. Rank(B) = number of nonzero rows (pivots). 2) det(B) = (product of pivots)·(−1)^{#swaps}/(product of scaling factors). If you only use swaps/additions, det(B) equals the product of diagonal entries up to sign from swaps.
 
 ## Q2. Linear dependence and subspaces in \(\mathbb{R}^3\)
 
-**(a) Linear combination**
-- To show \(v_3\) is a combination of \(v_1, v_2\), solve \(\alpha v_1 + \beta v_2 = v_3\). If a solution exists, the three vectors are linearly dependent (one is redundant).
+**(a) Linear combination & dependence**
+- Solve \(\alpha v_1 + \beta v_2 = v_3\) (2 unknowns, 3 equations). If a solution exists, the three vectors are dependent; otherwise independent. Quick check: det([v1 v2 v3])=0 ⇒ dependent.
 
 **(b) Subspace V**
-- To prove V is a subspace: show (i) contains 0; (ii) closed under addition; (iii) closed under scalar multiplication. For sets defined by linear equations (e.g., \(ax+by+cz=0\)), these hold automatically.
-- Basis: row-reduce the matrix with vectors of V as rows/columns, keep pivot columns as basis vectors. Dimension = number of basis vectors (rank).
+- Subspace test: contains 0; closed under addition and scalar multiplication. Any solution set of homogeneous linear equations satisfies this. Basis: row-reduce stacked vectors, take pivot columns. Dimension = #pivots.
 
-**(c) Membership test**
-- Substitute the candidate vector into the defining linear conditions of V (or express as a combination of basis vectors). If it satisfies, it lies in V; otherwise not.
+**(c) Membership**
+- Plug the candidate into the defining linear equations of V or solve for coefficients in the basis; if it fits, it’s in V.
 
 ## Q3. SVD and diagonalizability
 
-**(a) SVD of A**
-1. Compute eigenvalues of \(A^T A\). Their square roots are singular values \(\sigma_i\), ordered \(\sigma_1 \ge \sigma_2 \ge \dots\).
-2. Right singular vectors: normalized eigenvectors of \(A^T A\) (columns of V).
-3. Left singular vectors: \(u_i = (1/\sigma_i) A v_i\) (columns of U). Assemble \(A = U \Sigma V^T\).
+**(a) SVD of A (steps)**
+1) Form \(A^T A\), find eigenvalues \(\lambda_i\). 2) Singular values: \(\sigma_i = \sqrt{\lambda_i}\) sorted. 3) Right singular vectors: eigenvectors of \(A^T A\) → V. 4) Left singulars: \(u_i = A v_i / \sigma_i\) → U. Assemble \(A = U \Sigma V^T\).
 
 **(b) Diagonalizability**
-- A is diagonalizable over \(\mathbb{R}\) if it has a full set of linearly independent eigenvectors (algebraic multiplicity = geometric multiplicity for each eigenvalue). For symmetric matrices, diagonalizable via orthogonal basis always holds. If A is defective (missing eigenvectors), it is not diagonalizable but still has an SVD.
+- Diagonalizable if it has n independent eigenvectors (geom mult = alg mult). All real symmetric matrices are diagonalizable (orthogonally). Defective matrices are not, but still admit an SVD.
 
 ## Q4. Quadratic form analysis
 

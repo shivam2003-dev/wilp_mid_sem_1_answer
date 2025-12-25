@@ -5,13 +5,7 @@ language: en
 execute:
   execute_notebooks: "off"
 sphinx:
-  extra_extensions:
-    - myst_parser
-    - sphinx.ext.mathjax
   config:
     html_theme: furo
-    myst_enable_extensions:
-      - colon_fence
-      - deflist
     templates_path: ["_templates"]
     exclude_patterns: ["_build", "Thumbs.db", ".DS_Store"]
