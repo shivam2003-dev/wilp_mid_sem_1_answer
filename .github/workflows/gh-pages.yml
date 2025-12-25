@@ -20,6 +20,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
@@ -32,12 +35,12 @@ jobs:
 
       - name: Build docs
         run: |
-          sphinx-build -b html docs _build/html
+          sphinx-build -b html docs _site
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: _build/html
+          path: _site
 
   deploy:
     needs: build
